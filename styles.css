@@ -1,0 +1,39 @@
+.header {
+    text-align: center;
+    font-family:'Courier New', Courier, monospace;
+    margin: 1em;
+}
+
+button {
+    background-color: lightblue;
+    font-weight: bold;
+    padding: 1em 2em;
+    border-radius: 10px;
+}
+
+.colorbuttons {
+    margin: 1em;
+    text-align: center;
+}
+.mastercontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-container{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.item {
+    padding: 2em;
+    font-family:'Brush Script MT';
+}
+
+#promptButton {
+    width: 100px;
+    height: 100px;
+}
