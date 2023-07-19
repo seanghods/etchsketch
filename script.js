@@ -1,10 +1,14 @@
-let numberOfRows = 16
+let numberOfRows = 16;
+let currentColor = 'blue';
 
-createDivs();
-buttonFunc();
-colorButtons();
+window.onload = () => {
+    createDivs();
+    buttonFunc();
+    colorButtons();
+    eraser();
+}
 
-function createDivs(x = 1) {
+function createDivs() {
     for (let i = 0; i < numberOfRows; i++) {
         const container = document.querySelector(".mastercontainer");
         const newParentDiv = document.createElement("div");
@@ -12,9 +16,6 @@ function createDivs(x = 1) {
         for (let i = 0; i < numberOfRows; i++) {
             const newDiv = document.createElement("div");
             newDiv.classList.add('item');
-            newDiv.innerHTML = 'X';
-            x++;
-            if (x == numberOfRows + 1) x = 1;
             newParentDiv.appendChild(newDiv);
         }
         container.appendChild(newParentDiv);
@@ -23,7 +24,8 @@ function createDivs(x = 1) {
 }
 
 function addHover(color) {
-    const item = document.querySelectorAll(".item")
+    currentColor = color;
+    const item = document.querySelectorAll(".item");
     for (const each of item) {
         each.addEventListener('mouseover', () => {
             each.style.backgroundColor = color
@@ -56,5 +58,16 @@ function colorButtons() {
     const greenButton = document.querySelector('#greenbutton')
     greenButton.addEventListener('click', () =>{
         addHover('green')
+    })
+}
+
+function eraser() {
+    document.addEventListener('keydown', (event) => {
+        let savedColor = currentColor;
+        console.log(savedColor);
+        if (event.code == 'Space') addHover('white');
+    })
+    document.addEventListener('keyup', (event) => {
+        if (event.code == 'Space') addHover(savedColor);
     })
 }

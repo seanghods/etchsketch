@@ -20,6 +20,7 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 5px solid black;
 }
 
 .item-container{
@@ -31,6 +32,7 @@ button {
 .item {
     padding: 2em;
     font-family:'Brush Script MT';
+    border: 2px solid black;
 }
 
 #promptButton {
