@@ -30,7 +30,9 @@ function createDivs() {
             if (storageOn) {
                 newDiv.style.backgroundColor = arrayData[counter]
             } else {
+                newDiv.style.backgroundColor = 'white'
                 arrayData.push('white');
+                localStorage.setItem('divData',arrayData.join(','));
             }
             newParentDiv.appendChild(newDiv);
         }
@@ -60,7 +62,9 @@ function buttonFunc() {
     button.addEventListener('click', () => {
         numberOfRows = parseInt(prompt("Please enter your desired number of rows", "16"))
         const container = document.querySelector(".mastercontainer");
-        container.innerHTML = ""
+        container.innerHTML = "";
+        storageOn = 0;
+        arrayData = [];
         createDivs();
     })
 }
