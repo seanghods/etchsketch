@@ -38,7 +38,7 @@ function createDivs() {
         }
         container.appendChild(newParentDiv);
     }
-    addHover('blue');
+    addHover(currentColor);
 }
 
 function addHover(color) {
@@ -73,15 +73,23 @@ function buttonFunc() {
 function createColorButtons() {
     const blueButton = document.querySelector('#bluebutton')
     blueButton.addEventListener('click', () =>{
-        addHover('blue')
+        addHover('blue');
+        currentColor = blue;
     })
     const redButton = document.querySelector('#redbutton')
     redButton.addEventListener('click', () =>{
-        addHover('red')
+        addHover('red');
+        currentColor = red;
     })
     const greenButton = document.querySelector('#greenbutton')
     greenButton.addEventListener('click', () =>{
         addHover('green')
+        currentColor = green;
+    })
+    const colorPickerButton = document.querySelector('#colorpicker')
+    colorPickerButton.addEventListener('input', () =>{
+        addHover(colorPickerButton.value);
+        currentColor = colorPickerButton.value;
     })
 }
 

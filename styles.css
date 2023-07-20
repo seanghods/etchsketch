@@ -14,8 +14,9 @@ body {
 button {
     background-color: lightblue;
     font-weight: bold;
-    padding: 1em 2em;
     border-radius: 10px;
+    height: 50px;
+    width: 120px;
 }
 
 .colorbuttons {
@@ -26,6 +27,14 @@ button {
 #promptButton {
     width: 100px;
     height: 100px;
+}
+
+#colorpicker {
+    background-color: lightblue;
+    width: 60px;
+    height: 25px;
+    padding: 0;
+    border: 0;
 }
 
 /* body */
