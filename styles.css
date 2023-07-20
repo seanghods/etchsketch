@@ -43,9 +43,9 @@ button {
 .mastercontainer{
     display: flex;
     flex-direction: column;
-    border: 5px solid black;
-    height: 50em;
-    width: 50em;
+    border: 1px solid black;
+    height: min(700px, 80vw);
+    width: min(700px, 80vw);
 }
 
 .item-container{
