@@ -4,7 +4,7 @@ let isKeyDown = 0;
 let arrayData = [];
 let storageOn = 0;
 if (localStorage.getItem('divData')) {
-    arrayData = localStorage.getItem('divData').split(',');
+    arrayData = localStorage.getItem('divData').split('|');
     storageOn = 1;
 }
 
@@ -33,7 +33,7 @@ function createDivs() {
             } else {
                 newDiv.style.backgroundColor = 'white'
                 arrayData.push('white');
-                localStorage.setItem('divData',arrayData.join(','));
+                localStorage.setItem('divData',arrayData.join('|'));
             }
             newParentDiv.appendChild(newDiv);
         }
@@ -47,15 +47,23 @@ function addHover(color) {
     const item = document.querySelectorAll(".item");
     for (const [index, each] of item.entries()) {
         each.addEventListener('mouseover', () => {
-            each.style.backgroundColor = color
-            editArrayDataColor(index, color);
+            if (color == 'rainbow') {
+                let r = Math.floor(Math.random()*256)
+                let g = Math.floor(Math.random()*256)
+                let b = Math.floor(Math.random()*256)
+                each.style.backgroundColor = `rgb(${r}, ${g}, ${b}`
+                editArrayDataColor(index, `rgb(${r}, ${g}, ${b}`);
+            } else {
+                each.style.backgroundColor = color
+                editArrayDataColor(index, color);
+            }
         })
     }
 }
 
 function editArrayDataColor(index, color) {
     arrayData[index] = color;
-    localStorage.setItem('divData',arrayData.join(','))
+    localStorage.setItem('divData',arrayData.join('|'))
 }
 
 function buttonFunc() {
@@ -76,6 +84,7 @@ function createColorButtons() {
     const blueButton = document.querySelector('#bluebutton')
     const redButton = document.querySelector('#redbutton')
     const greenButton = document.querySelector('#greenbutton')
+    const rainbowButton = document.querySelector('#rainbowbutton')
     blueButton.addEventListener('click', () =>{
         addHover('blue');
         currentColor = 'blue';
@@ -90,6 +99,11 @@ function createColorButtons() {
         addHover('green')
         currentColor = 'green';
         colorPickerButton.value = '#008000'
+    })
+    rainbowButton.addEventListener('click', () =>{
+        addHover('rainbow');
+        currentColor = 'rainbow';
+        colorPickerButton.value = '#ee82ee'
     })
     colorPickerButton.addEventListener('input', () =>{
         addHover(colorPickerButton.value);

@@ -21,7 +21,16 @@ button {
 
 .colorbuttons {
     margin: 1em;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: .6em;
+}
+
+.color2ndbuttons {
+    margin: 1em;
+    display: flex;
+    justify-content: center;
+    gap: .6em;
 }
 
 #promptButton {
