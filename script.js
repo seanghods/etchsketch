@@ -1,5 +1,6 @@
 let numberOfRows = 16;
 let currentColor = 'blue';
+let isKeyDown = 0;
 let arrayData = [];
 let storageOn = 0;
 if (localStorage.getItem('divData')) {
@@ -95,10 +96,17 @@ function createColorButtons() {
 
 function createEraser() {
     document.addEventListener('keydown', (event) => {
-        let savedColor = currentColor;
-        if (event.code == 'Space') addHover('white');
+        if (event.code == 'Space' && isKeyDown == 0) {
+            savedColor = currentColor;
+            console.log(savedColor);
+            addHover('white');
+            isKeyDown = 1;
+        }
     })
     document.addEventListener('keyup', (event) => {
-        if (event.code == 'Space') addHover(savedColor);
+        if (event.code == 'Space') {
+            addHover(savedColor);
+            isKeyDown = 0;
+        }
     })
 }
