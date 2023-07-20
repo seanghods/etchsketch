@@ -61,6 +61,7 @@ function buttonFunc() {
     const button = document.querySelector("button");
     button.addEventListener('click', () => {
         numberOfRows = parseInt(prompt("Please enter your desired number of rows", "16"))
+        if (numberOfRows > 50) numberOfRows = 50;
         const container = document.querySelector(".mastercontainer");
         container.innerHTML = "";
         storageOn = 0;
