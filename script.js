@@ -72,22 +72,25 @@ function buttonFunc() {
 }
 
 function createColorButtons() {
+    const colorPickerButton = document.querySelector('#colorpicker')
     const blueButton = document.querySelector('#bluebutton')
+    const redButton = document.querySelector('#redbutton')
+    const greenButton = document.querySelector('#greenbutton')
     blueButton.addEventListener('click', () =>{
         addHover('blue');
-        currentColor = blue;
+        currentColor = 'blue';
+        colorPickerButton.value = '#0000FF'
     })
-    const redButton = document.querySelector('#redbutton')
     redButton.addEventListener('click', () =>{
         addHover('red');
-        currentColor = red;
+        currentColor = 'red';
+        colorPickerButton.value = '#FF0000'
     })
-    const greenButton = document.querySelector('#greenbutton')
     greenButton.addEventListener('click', () =>{
         addHover('green')
-        currentColor = green;
+        currentColor = 'green';
+        colorPickerButton.value = '#008000'
     })
-    const colorPickerButton = document.querySelector('#colorpicker')
     colorPickerButton.addEventListener('input', () =>{
         addHover(colorPickerButton.value);
         currentColor = colorPickerButton.value;
@@ -98,7 +101,6 @@ function createEraser() {
     document.addEventListener('keydown', (event) => {
         if (event.code == 'Space' && isKeyDown == 0) {
             savedColor = currentColor;
-            console.log(savedColor);
             addHover('white');
             isKeyDown = 1;
         }
