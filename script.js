@@ -1,21 +1,37 @@
 let numberOfRows = 16;
 let currentColor = 'blue';
+let arrayData = [];
+let storageOn = 0;
+if (localStorage.getItem('divData')) {
+    arrayData = localStorage.getItem('divData').split(',');
+    storageOn = 1;
+}
 
 window.onload = () => {
     createDivs();
     buttonFunc();
-    colorButtons();
-    eraser();
+    createColorButtons();
+    createEraser();
 }
 
+
+
 function createDivs() {
+    let counter = -1;
+    if (storageOn) numberOfRows = Math.sqrt(arrayData.length)
     for (let i = 0; i < numberOfRows; i++) {
         const container = document.querySelector(".mastercontainer");
         const newParentDiv = document.createElement("div");
         newParentDiv.classList.add('item-container');
-        for (let i = 0; i < numberOfRows; i++) {
+        for (let j = 0; j < numberOfRows; j++) {
             const newDiv = document.createElement("div");
+            counter++;
             newDiv.classList.add('item');
+            if (storageOn) {
+                newDiv.style.backgroundColor = arrayData[counter]
+            } else {
+                arrayData.push('white');
+            }
             newParentDiv.appendChild(newDiv);
         }
         container.appendChild(newParentDiv);
@@ -26,14 +42,17 @@ function createDivs() {
 function addHover(color) {
     currentColor = color;
     const item = document.querySelectorAll(".item");
-    for (const each of item) {
+    for (const [index, each] of item.entries()) {
         each.addEventListener('mouseover', () => {
             each.style.backgroundColor = color
+            editArrayDataColor(index, color);
         })
-        // each.addEventListener('mouseout', () => {
-        //     each.style.backgroundColor = 'white'
-        // })
     }
+}
+
+function editArrayDataColor(index, color) {
+    arrayData[index] = color;
+    localStorage.setItem('divData',arrayData.join(','))
 }
 
 function buttonFunc() {
@@ -46,7 +65,7 @@ function buttonFunc() {
     })
 }
 
-function colorButtons() {
+function createColorButtons() {
     const blueButton = document.querySelector('#bluebutton')
     blueButton.addEventListener('click', () =>{
         addHover('blue')
@@ -61,10 +80,9 @@ function colorButtons() {
     })
 }
 
-function eraser() {
+function createEraser() {
     document.addEventListener('keydown', (event) => {
         let savedColor = currentColor;
-        console.log(savedColor);
         if (event.code == 'Space') addHover('white');
     })
     document.addEventListener('keyup', (event) => {
